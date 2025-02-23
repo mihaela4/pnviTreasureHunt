@@ -28,8 +28,8 @@ func _on_body_entered(body: Node3D) -> void:
 	set_collision_layer_value(3, false)
 	set_collision_mask_value(1, false)
 	$AnimationPlayer.play("bounce")
-	audio_player.stream = collect_sound  # Set the sound to the coin
-	audio_player.play()  # Play the sound
+	audio_player.stream = collect_sound 
+	audio_player.play()  
 
 # Called when the animation finishes.
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:

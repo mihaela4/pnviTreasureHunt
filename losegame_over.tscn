@@ -93,7 +93,7 @@ grow_horizontal = 2
 theme_override_fonts/font = ExtResource("2_7bnb6")
 theme_override_font_sizes/font_size = 35
 text = "GAME OVER!
-BETTER TIME NEXT TIME!"
+BETTER LUCK NEXT TIME!"
 horizontal_alignment = 1
 
 [connection signal="pressed" from="RestartButton" to="." method="_on_restart_button_pressed"]
