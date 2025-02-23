@@ -1,0 +1,83 @@
+[gd_scene load_steps=5 format=3 uid="uid://d0iwyafsqdh5y"]
+
+[ext_resource type="FontFile" uid="uid://dyw630x8k18q3" path="res://Assets/Fonts/FrancoisOne-Regular.ttf" id="1_kwkt1"]
+[ext_resource type="Script" path="res://game_over.gd" id="1_v4pub"]
+[ext_resource type="Texture2D" uid="uid://dco33cwaudb4d" path="res://Assets/Images/BG2.png" id="3_3r5xj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ahlrt"]
+
+[node name="WON" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_v4pub")
+
+[node name="GameOverText" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -150.0
+offset_top = 136.0
+offset_right = 153.0
+offset_bottom = 241.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_kwkt1")
+theme_override_font_sizes/font_size = 35
+text = "GAME OVER!
+CONGRATS YOU WON!"
+horizontal_alignment = 1
+
+[node name="RestartButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -93.0
+offset_top = -33.5
+offset_right = 93.0
+offset_bottom = 33.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_kwkt1")
+text = "PLAY AGAIN"
+
+[node name="QuitButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -94.0
+offset_top = 55.0
+offset_right = 92.0
+offset_bottom = 122.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_kwkt1")
+text = "QUIT"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_ahlrt")
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.684
+anchor_bottom = 1.568
+offset_left = 20.0
+offset_top = 8.0
+offset_right = 0.0318604
+offset_bottom = -0.0640259
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_3r5xj")
+stretch_mode = 5
+
+[connection signal="pressed" from="RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]

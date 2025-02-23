@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://d26kvv3f5eges"]
+
+[ext_resource type="Script" path="res://area_3d.gd" id="1_6xveo"]
+[ext_resource type="PackedScene" uid="uid://dbgrlosg8ui30" path="res://Assets/Models/GLB format/chest.glb" id="1_nap7e"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l277m"]
+albedo_color = Color(0.482353, 0.0588235, 0.235294, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7n2c5"]
+material = SubResource("StandardMaterial3D_l277m")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nsnaw"]
+size = Vector3(0.548157, 0.470108, 0.502014)
+
+[node name="treasureChest" type="StaticBody3D"]
+collision_layer = 4
+collision_mask = 7
+
+[node name="Area3D" type="Area3D" parent="."]
+script = ExtResource("1_6xveo")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D"]
+transform = Transform3D(0.540409, 0, 0, 0, 0.478591, 0, 0, 0, 0.517435, -0.00321913, 0.119904, 0.507811)
+mesh = SubResource("BoxMesh_7n2c5")
+skeleton = NodePath("../..")
+
+[node name="chest2" parent="Area3D/MeshInstance3D" instance=ExtResource("1_nap7e")]
+transform = Transform3D(1.85045, 0, 0, 0, 2.08947, 0, 0, 0, 1.93261, 0.0320228, -0.400106, -0.0150948)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00436401, 0.125865, 0.511737)
+shape = SubResource("BoxShape3D_nsnaw")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00436401, 0.125865, 0.511737)
+shape = SubResource("BoxShape3D_nsnaw")
+
+[connection signal="body_entered" from="Area3D" to="Area3D" method="_on_body_entered"]

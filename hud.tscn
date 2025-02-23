@@ -1,0 +1,108 @@
+[gd_scene load_steps=6 format=3 uid="uid://cnn8p8mqe0akp"]
+
+[ext_resource type="Texture2D" uid="uid://c7s0bvlsj5dnb" path="res://Assets/Images/hud_coin.png" id="1_bnl7h"]
+[ext_resource type="Script" path="res://hud.gd" id="1_ogdoj"]
+[ext_resource type="FontFile" uid="uid://dyw630x8k18q3" path="res://Assets/Fonts/FrancoisOne-Regular.ttf" id="3_sioo0"]
+[ext_resource type="Texture2D" uid="uid://ygiyvavr1x7c" path="res://Assets/Images/chestimg.png" id="4_a2g8e"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_utsqi"]
+bg_color = Color(0, 0, 0, 0.352941)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_ogdoj")
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 15.0
+offset_top = 13.0
+offset_right = 185.0
+offset_bottom = 53.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_utsqi")
+
+[node name="PanelTimer" type="Panel" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -177.0
+offset_bottom = 39.0
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_utsqi")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 17.0
+offset_top = 17.0
+offset_right = 48.0
+offset_bottom = 45.0
+texture = ExtResource("1_bnl7h")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="."]
+offset_left = 48.0
+offset_top = 17.0
+offset_right = 88.0
+offset_bottom = 47.0
+theme_override_colors/font_color = Color(0.71325, 0.500313, 1.92523e-07, 1)
+theme_override_fonts/font = ExtResource("3_sioo0")
+theme_override_font_sizes/font_size = 21
+text = "x"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 128.0
+offset_top = 17.0
+offset_right = 172.0
+offset_bottom = 49.0
+theme_override_colors/font_color = Color(0.71325, 0.500313, 1.92523e-07, 1)
+theme_override_fonts/font = ExtResource("3_sioo0")
+theme_override_font_sizes/font_size = 21
+text = "x"
+
+[node name="ChestsLabel" type="Label" parent="."]
+offset_left = 144.0
+offset_top = 15.0
+offset_right = 187.0
+offset_bottom = 52.0
+theme_override_colors/font_color = Color(0.71325, 0.500313, 1.92523e-07, 1)
+theme_override_fonts/font = ExtResource("3_sioo0")
+theme_override_font_sizes/font_size = 25
+text = "##"
+
+[node name="CoinsLabel" type="Label" parent="."]
+offset_left = 64.0
+offset_top = 15.0
+offset_right = 104.0
+offset_bottom = 52.0
+theme_override_colors/font_color = Color(0.71325, 0.500313, 1.92523e-07, 1)
+theme_override_fonts/font = ExtResource("3_sioo0")
+theme_override_font_sizes/font_size = 25
+text = "##"
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+offset_left = 71.0
+offset_top = 5.0
+offset_right = 167.0
+offset_bottom = 57.0
+texture = ExtResource("4_a2g8e")
+expand_mode = 1
+
+[node name="GameTimer" type="Timer" parent="."]
+wait_time = 100.0
+autostart = true
+
+[node name="TimerLabel" type="Label" parent="."]
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -118.0
+offset_top = 1.0
+offset_right = -77.0
+offset_bottom = 38.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0.71325, 0.500313, 1.92523e-07, 1)
+theme_override_fonts/font = ExtResource("3_sioo0")
+theme_override_font_sizes/font_size = 25
+text = "300"
+
+[connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]

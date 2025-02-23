@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://ddwnmuvyx82hk"]
+
+[ext_resource type="Script" path="res://chestt.gd" id="1_34374"]
+[ext_resource type="PackedScene" uid="uid://dbgrlosg8ui30" path="res://Assets/Models/GLB format/chest.glb" id="2_yko27"]
+[ext_resource type="AudioStream" uid="uid://kwm635hp8d34" path="res://Assets/Sound/collect_sound_short.wav" id="3_ae8af"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_7nnai"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xdog0"]
+size = Vector3(0.911621, 0.791077, 0.661255)
+
+[node name="Chestt" type="Area3D"]
+collision_layer = 4
+script = ExtResource("1_34374")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.88, 0, 0, 0, 0.88704, 0, 0, 0, 0.594, 0, 0, 0)
+visible = false
+mesh = SubResource("BoxMesh_7nnai")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000739932, 0.0932477, 0.0181274)
+shape = SubResource("BoxShape3D_xdog0")
+
+[node name="chest2" parent="." instance=ExtResource("2_yko27")]
+transform = Transform3D(1.2, 0, 0, 0, 1.21, 0, 0, 0, 1.2, 0, 0, 0)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_ae8af")
+volume_db = -10.608
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

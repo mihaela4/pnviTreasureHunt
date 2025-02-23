@@ -1,0 +1,22 @@
+[gd_resource type="Environment" load_steps=3 format=3 uid="uid://b5gihowh2674s"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pismr"]
+sky_top_color = Color(0.27451, 0.670588, 0.976471, 1)
+sky_horizon_color = Color(0.807063, 0.700695, 0.962869, 1)
+sky_curve = 0.356762
+sky_cover_modulate = Color(0.807843, 0.701961, 0.964706, 1)
+ground_bottom_color = Color(0.290196, 0.486275, 0.94902, 1)
+ground_horizon_color = Color(0.912018, 0.761766, 0.94494, 1)
+ground_curve = 0.0746427
+
+[sub_resource type="Sky" id="Sky_mh635"]
+sky_material = SubResource("ProceduralSkyMaterial_pismr")
+
+[resource]
+background_mode = 2
+sky = SubResource("Sky_mh635")
+ambient_light_source = 3
+ambient_light_color = Color(0.785421, 0.584217, 0.129738, 1)
+ambient_light_sky_contribution = 0.43
+ambient_light_energy = 1.19
+ssao_enabled = true

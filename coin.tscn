@@ -1,0 +1,71 @@
+[gd_scene load_steps=8 format=3 uid="uid://clvwe1iidw0gu"]
+
+[ext_resource type="Script" path="res://coin.gd" id="1_vjm3u"]
+[ext_resource type="ArrayMesh" uid="uid://dkwxc2f7utvp5" path="res://Assets/Models/coin_new.res" id="2_70wef"]
+[ext_resource type="AudioStream" uid="uid://kwm635hp8d34" path="res://Assets/Sound/collect_sound_short.wav" id="3_42mp8"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_1vyvk"]
+height = 0.15
+radius = 0.3
+
+[sub_resource type="Animation" id="Animation_o3wex"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_fvxmm"]
+resource_name = "bounce"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 1.23169, 0), Vector3(0, 0.895184, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6s70b"]
+_data = {
+"RESET": SubResource("Animation_o3wex"),
+"bounce": SubResource("Animation_fvxmm")
+}
+
+[node name="Coin" type="Area3D"]
+transform = Transform3D(0.704498, 0, -0.709706, 0, 1, 0, 0.709706, 0, 0.704498, 0, 0, 0)
+collision_layer = 4
+script = ExtResource("1_vjm3u")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-9.08781e-09, -0.203018, -0.249077, 0.331559, -1.41522e-08, -1.35419e-22, -1.12896e-08, -0.252205, 0.200499, 0, 0, 0)
+mesh = ExtResource("2_70wef")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-0.0048582, -0.617182, -0.786806, 0.999969, -0.00787135, 0, -0.00619322, -0.786781, 0.617201, 0, 0, 0)
+shape = SubResource("CylinderShape3D_1vyvk")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_6s70b")
+}
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_42mp8")
+volume_db = -13.26
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
